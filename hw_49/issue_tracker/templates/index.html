@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Список задач{% endblock title %}
+
+{% block content %}
+
+{% if not products %}
+    <h2>ЗАДАЧ НЕТ</h2>
+{% endif %}
+
+<div class="row mt-4">
+    {% for task in tasks %}
+        <div class="col-sm-12 col-lg-4 mb-4">
+            <div class="card">
+                <h5 class="card-header">
+                    {{ task.summary }}
+                </h5>
+                <div class="card-body">
+                    <p class="card-text">Статус: {{ task.status }}</p>
+                    <p class="card-text">Тип: {{ task.type }}</p>
+{#                <a href="{% url "task-view" task.id %}" class="btn btn-primary">Просмотр задачи</a>#}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}
