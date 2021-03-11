@@ -9,6 +9,10 @@ class Status(models.Model):
         verbose_name = 'Статус'
         verbose_name_plural = 'Статусы'
 
+    def __str__(self):
+        return self.name_of_status
+
+
 class Type(models.Model):
     name_of_type = models.CharField(max_length=100, null=False, blank=False, verbose_name='Тип')
 
@@ -16,6 +20,9 @@ class Type(models.Model):
         db_table = 'type'
         verbose_name = 'Тип'
         verbose_name_plural = 'Типы'
+
+    def __str__(self):
+        return self.name_of_type
 
 
 class Task(models.Model):
