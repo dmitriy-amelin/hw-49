@@ -1,0 +1,17 @@
+{% csrf_token %}
+
+{% for error in form.non_field_errors %}
+   <p class="form-error">{{ error }}</p>
+{% endfor %}
+<div class="form-group">
+{% for field in form %}
+
+    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+
+    {% for error in field.errors %}
+       <p class="form-error">{{ error }}</p>
+    {% endfor %}
+    <p {% if field.errors %} class="form-field-error"{% endif %}>{{ field }}</p>
+{% endfor %}
+</div>
+<input class="btn btn-primary" role="button" type="submit" value="{{ button_text }}">

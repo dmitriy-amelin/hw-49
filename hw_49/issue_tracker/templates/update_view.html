@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Изменение задачи{% endblock title %}
+
+{% block content %}
+    <form action="{% url "task-update" task.id %}" method="post">
+            <h3>Внесите изменение в задачу</h3>
+        {% include 'task_form.html' with button_text="Изменить" %}
+            <a class="btn btn-danger" role="button" href="{% url "task-view" task.id %}">Отменить изменения</a>
+    </form>
+
+{% endblock content %}
