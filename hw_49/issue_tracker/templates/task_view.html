@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Просмотр Задачи{% endblock title %}
+
+{% block content %}
+<div class="card">
+    <h5 class="card-header">
+        {{ task.summary }}
+    </h5>
+    <div class="card-body">
+        <p class="card-text">{{ task.description }}</p>
+        <p class="card-text">Статус: {{ task.status }}</p>
+        <p class="card-text">Тип: {{ task.type }}</p>
+        <p class="card-text">Дата создания: {{ task.created_at }}</p>
+        <p class="card-text">Дата изменения: {{ task.updated_at }}</p>
+{#        <a href="{% url "task-update" task.id %}" class="btn btn-primary">Изменение задачи</a>#}
+{#        <a href="{% url "task-delete" task.id %}" class="btn btn-primary">Удаление задачи</a>#}
+
+    </div>
+</div>
+
+{% endblock content %}
