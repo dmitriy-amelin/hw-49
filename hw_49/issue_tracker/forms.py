@@ -9,3 +9,7 @@ class TaskForm(forms.Form):
     description = forms.CharField(max_length=3000, label='Description', required=False, widget=widgets.Textarea)
     status = forms.ModelChoiceField(queryset=Status.objects.all())
     type = forms.ModelChoiceField(queryset=Type.objects.all())
+
+
+class TaskDeleteForm(forms.Form):
+    title = forms.CharField(max_length=120, required=True, label='Введите название задачи, чтобы удалить её')

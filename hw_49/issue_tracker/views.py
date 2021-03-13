@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View, TemplateView, RedirectView
 
 from issue_tracker.models import Type, Task, Status
-from issue_tracker.forms import TaskForm
+from issue_tracker.forms import TaskForm, TaskDeleteForm
 
 
 class IndexView(TemplateView):
@@ -35,17 +35,15 @@ class TaskUpdate(View):
 
     def post(self, request, pk):
         task = get_object_or_404(Task, id=pk)
-
         form = TaskForm(data=request.POST)
         if form.is_valid():
-            task.summary = request.POST.get('summary')
-            task.description = request.POST.get('description')
-            task.status = request.POST.get('status')
-            task.type = request.POST.get('type')
+            task.summary = form.cleaned_data.get('summary')
+            task.description = form.cleaned_data.get('description')
+            task.status = form.cleaned_data.get('status')
+            task.type = form.cleaned_data.get('type')
             task.save()
 
             return redirect('task-view', pk=task.id)
-
         return render(request, 'update_view.html', context={'form': form, 'task': task})
 
 
@@ -66,3 +64,22 @@ class TaskAdd(View):
             )
             return redirect('task-view', pk=task.id)
         return render(request, 'task_add.html', context={'form': form})
+
+
+class TaskDelete(View):
+
+    def get(self, request, pk):
+        task = get_object_or_404(Task, id=pk)
+        form = TaskDeleteForm()
+        return render(request, 'task_delete.html', context={'task': task, 'form': form})
+
+    def post(self, request, pk):
+        task = get_object_or_404(Task, id=pk)
+        form = TaskDeleteForm(data=request.POST)
+        if form.is_valid():
+            if form.cleaned_data['title'] != task.summary:
+                form.errors['title'] = ['Название задачи не совпадает']
+                return render(request, 'task_delete.html', context={'task': task, 'form': form})
+            task.delete()
+            return redirect('task-list')
+        return render(request, 'task_delete.html', context={'task': task, 'form': form})

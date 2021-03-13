@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Удаление задачи{% endblock %}
+    <h2>Вы уверены, что хотите удалить задачу?</h2>
+
+{% block content%}
+    <form action="{% url "task-delete" task.id %}", method="POST">
+         {% include 'task_form.html' with button_text="Да, я хочу удалить задачу" %}
+
+        <a class="btn btn-danger" role="button" href="{% url "task-view" task.id %}">Нет, я передумал.</a>
+    </form>
+{% endblock content %}

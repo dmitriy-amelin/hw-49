@@ -14,7 +14,7 @@
         <p class="card-text">Дата создания: {{ task.created_at }}</p>
         <p class="card-text">Дата изменения: {{ task.updated_at }}</p>
         <a href="{% url "task-update" task.id %}" class="btn btn-primary">Изменение задачи</a>
-{#        <a href="{% url "task-delete" task.id %}" class="btn btn-primary">Удаление задачи</a>#}
+        <a href="{% url "task-delete" task.id %}" class="btn btn-primary">Удаление задачи</a>
 
     </div>
 </div>
