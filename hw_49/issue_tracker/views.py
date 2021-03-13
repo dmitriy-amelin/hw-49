@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import View, TemplateView, RedirectView
+from django.views.generic import View, TemplateView
 
-from issue_tracker.models import Type, Task, Status
+from issue_tracker.models import Task
 from issue_tracker.forms import TaskForm, TaskDeleteForm
 
 
