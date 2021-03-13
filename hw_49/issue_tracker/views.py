@@ -47,3 +47,22 @@ class TaskUpdate(View):
             return redirect('task-view', pk=task.id)
 
         return render(request, 'update_view.html', context={'form': form, 'task': task})
+
+
+class TaskAdd(View):
+
+    def get(self, request):
+        form = TaskForm()
+        return render(request, 'task_add.html', context={'form': form})
+
+    def post(self, request):
+        form = TaskForm(data=request.POST)
+        if form.is_valid():
+            task = Task.objects.create(
+                summary=form.cleaned_data.get('summary'),
+                description=form.cleaned_data.get('description'),
+                status=form.cleaned_data.get('status'),
+                type=form.cleaned_data.get('type')
+            )
+            return redirect('task-view', pk=task.id)
+        return render(request, 'task_add.html', context={'form': form})

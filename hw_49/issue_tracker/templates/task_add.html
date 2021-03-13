@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавление задачи{% endblock title %}
+
+{% block content %}
+    <form action="{% url "task-add"%}" method="post">
+            <h3>Внесите изменение в задачу</h3>
+        {% include 'task_form.html' with button_text="Добавить" %}
+    </form>
+
+{% endblock content %}
