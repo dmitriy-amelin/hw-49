@@ -3,7 +3,7 @@ from issue_tracker.models import Task, Type, Status
 
 
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ['id', 'summary', 'description', 'status', 'type', 'created_at', 'updated_at']
+    list_display = ['id', 'summary', 'description', 'status', 'created_at', 'updated_at']
     list_filter = ['status', 'type']
     search_fields = ['summary', 'description', 'status', 'type']
     fields = ['id', 'summary', 'description', 'status', 'type']
