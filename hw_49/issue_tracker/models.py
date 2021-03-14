@@ -35,17 +35,14 @@ class Task(models.Model):
                                null=False,
                                blank=False
                                )
-    type = models.ForeignKey('issue_tracker.Type',
-                             on_delete=models.CASCADE,
-                             related_name='type',
-                             verbose_name='Тип',
-                             null=False,
-                             blank=False
-                             )
+    type = models.ManyToManyField('issue_tracker.Type',
+                                  related_name='tasks',
+                                  db_table='task_types'
+                                  )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = 'task'
+        db_table = 'tasks'
         verbose_name = 'Задача'
         verbose_name_plural = 'Задачи'
