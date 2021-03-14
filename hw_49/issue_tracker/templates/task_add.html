@@ -4,7 +4,7 @@
 
 {% block content %}
     <form action="{% url "task-add"%}" method="post">
-            <h3>Внесите изменение в задачу</h3>
+            <h3>Заполните поля новой задачи</h3>
         {% include 'task_form.html' with button_text="Добавить" %}
     </form>
 
