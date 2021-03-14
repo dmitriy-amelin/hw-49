@@ -4,7 +4,7 @@
 
 {% block content %}
 
-{% if not products %}
+{% if not tasks %}
     <h2>ЗАДАЧ НЕТ</h2>
 {% endif %}
 
@@ -12,12 +12,15 @@
     {% for task in tasks %}
         <div class="col-sm-12 col-lg-4 mb-4">
             <div class="card">
-                <h5 class="card-header">
+                <h5 class="card-header bg-success text-white">
                     {{ task.summary }}
                 </h5>
                 <div class="card-body">
                     <p class="card-text">Статус: {{ task.status }}</p>
-                    <p class="card-text">Тип: {{ task.type }}</p>
+                    <p class="card-text">Тип: {% for type in task.type.all %}
+                        {{ type.name_of_type }}
+                        {% if not forloop.last %}, {% endif %}
+                    {% endfor %}</p>
                 <a href="{% url "task-view" task.id %}" class="btn btn-primary">Просмотр задачи</a>
                 </div>
             </div>
