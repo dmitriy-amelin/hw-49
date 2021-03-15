@@ -3,42 +3,42 @@
   "model": "issue_tracker.status",
   "pk": 1,
   "fields": {
-    "name_of_status": "Task"
+    "name_of_status": "Done"
   }
 },
 {
   "model": "issue_tracker.status",
   "pk": 2,
   "fields": {
-    "name_of_status": "Bug"
+    "name_of_status": "In Progress"
   }
 },
 {
   "model": "issue_tracker.status",
   "pk": 3,
   "fields": {
-    "name_of_status": "Enhancement"
+    "name_of_status": "New"
   }
 },
 {
   "model": "issue_tracker.type",
   "pk": 1,
   "fields": {
-    "name_of_type": "New"
+    "name_of_type": "Enhancement"
   }
 },
 {
   "model": "issue_tracker.type",
   "pk": 2,
   "fields": {
-    "name_of_type": "In Progress"
+    "name_of_type": "Bug"
   }
 },
 {
   "model": "issue_tracker.type",
   "pk": 3,
   "fields": {
-    "name_of_type": "Done"
+    "name_of_type": "Task"
   }
 },
 {
