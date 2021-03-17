@@ -3,7 +3,7 @@ from django.views.generic import View, TemplateView, FormView
 from django.urls import reverse
 
 from issue_tracker.models import Task
-from issue_tracker.forms import TaskForm, TaskDeleteForm, UpdateForm
+from issue_tracker.forms import TaskForm, TaskDeleteForm
 from issue_tracker.base_views import CustomFormView
 
 
@@ -24,7 +24,7 @@ class TaskView(TemplateView):
 
 
 class TaskUpdate(FormView):
-    form_class = UpdateForm
+    form_class = TaskForm
     template_name = 'update_view.html'
 
     def dispatch(self, request, *args, **kwargs):
@@ -40,9 +40,6 @@ class TaskUpdate(FormView):
         kwargs = super().get_form_kwargs()
         kwargs['instance'] = self.task
         return kwargs
-
-    def get_initial(self):
-        return super().get_initial()
 
     def form_valid(self, form):
         types = form.cleaned_data.pop('type')
