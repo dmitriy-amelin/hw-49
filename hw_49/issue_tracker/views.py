@@ -3,6 +3,7 @@ from django.views.generic import View, TemplateView
 
 from issue_tracker.models import Task
 from issue_tracker.forms import TaskForm, TaskDeleteForm
+from issue_tracker.base_views import CustomFormView
 
 
 class IndexView(TemplateView):
@@ -47,24 +48,21 @@ class TaskUpdate(View):
         return render(request, 'update_view.html', context={'form': form, 'task': task})
 
 
-class TaskAdd(View):
+class TaskAdd(CustomFormView):
+    template_name = 'task_add.html'
+    form_class = TaskForm
+    redirect_url = 'task-list'
 
-    def get(self, request):
-        form = TaskForm()
-        return render(request, 'task_add.html', context={'form': form})
+    def form_valid(self, form):
+        types = form.cleaned_data.pop('type')
+        task = Task()
+        for key, value in form.cleaned_data.items():
+            setattr(task, key, value)
 
-    def post(self, request):
-        form = TaskForm(data=request.POST)
-        if form.is_valid():
-            types = form.cleaned_data.pop('type')
-            task = Task.objects.create(
-                summary=form.cleaned_data.get('summary'),
-                description=form.cleaned_data.get('description'),
-                status=form.cleaned_data.get('status')
-            )
-            task.type.set(types)
-            return redirect('task-view', pk=task.id)
-        return render(request, 'task_add.html', context={'form': form})
+        task.save()
+        task.type.set(types)
+
+        return super().form_valid(form)
 
 
 class TaskDelete(View):
