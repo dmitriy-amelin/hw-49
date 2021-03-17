@@ -29,7 +29,7 @@ class Task(models.Model):
     summary = models.TextField(verbose_name='Краткое описание')
     description = models.TextField(blank=True, verbose_name='Полное описание')
     status = models.ForeignKey('issue_tracker.Status',
-                               on_delete=models.CASCADE,
+                               on_delete=models.PROTECT,
                                related_name='status',
                                verbose_name='Статус',
                                null=False,
