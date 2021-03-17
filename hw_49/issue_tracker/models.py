@@ -1,10 +1,10 @@
-from django.core.validators import MinLengthValidator, MaxLengthValidator
+from django.core.validators import MinLengthValidator
 from django.db import models
 
 
 class Status(models.Model):
     name_of_status = models.CharField(max_length=100, null=False, blank=False, verbose_name='Статус',
-                                      validators=(MaxLengthValidator(15))
+                                      validators=(MinLengthValidator(2),)
                                       )
 
     class Meta:
@@ -18,7 +18,7 @@ class Status(models.Model):
 
 class Type(models.Model):
     name_of_type = models.CharField(max_length=100, null=False, blank=False, verbose_name='Тип',
-                                    validators=(MaxLengthValidator(15))
+                                    validators=(MinLengthValidator(2),)
                                     )
 
     class Meta:
@@ -31,9 +31,9 @@ class Type(models.Model):
 
 
 class Task(models.Model):
-    summary = models.CharField(max_length=200, verbose_name='Краткое описание', validators=(MinLengthValidator(3)))
+    summary = models.CharField(max_length=100, verbose_name='Краткое описание', validators=(MinLengthValidator(3),))
     description = models.TextField(max_length=3000, blank=True, verbose_name='Полное описание',
-                                   validators=(MinLengthValidator(10)))
+                                   validators=(MinLengthValidator(10),))
     status = models.ForeignKey('issue_tracker.Status',
                                on_delete=models.PROTECT,
                                related_name='status',
