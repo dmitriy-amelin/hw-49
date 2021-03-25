@@ -156,5 +156,62 @@
       2
     ]
   }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 22,
+  "fields": {
+    "summary": "Тестовая задача поиска 1",
+    "description": "Тестовое описание со словом Корабль",
+    "status": 2,
+    "created_at": "2021-03-25T09:12:54.653Z",
+    "updated_at": "2021-03-25T09:12:54.653Z",
+    "type": [
+      2
+    ]
+  }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 23,
+  "fields": {
+    "summary": "Тестовая задача search",
+    "description": "Тестовое описание",
+    "status": 2,
+    "created_at": "2021-03-25T09:15:19.578Z",
+    "updated_at": "2021-03-25T09:15:19.578Z",
+    "type": [
+      3
+    ]
+  }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 24,
+  "fields": {
+    "summary": "Тестовая задача 2222",
+    "description": "Тестовое описание Search",
+    "status": 3,
+    "created_at": "2021-03-25T09:16:20.852Z",
+    "updated_at": "2021-03-25T09:16:20.852Z",
+    "type": [
+      2
+    ]
+  }
+},
+{
+  "model": "issue_tracker.task",
+  "pk": 25,
+  "fields": {
+    "summary": "Тестовая задача 12",
+    "description": "Описание тестовой задачи 12",
+    "status": 2,
+    "created_at": "2021-03-25T09:25:36.140Z",
+    "updated_at": "2021-03-25T09:25:36.140Z",
+    "type": [
+      1,
+      2
+    ]
+  }
 }
 ]
