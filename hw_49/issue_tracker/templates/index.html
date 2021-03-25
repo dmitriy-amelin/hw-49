@@ -4,6 +4,12 @@
 
 {% block content %}
 
+    {% include "partial/search_form.html" %}
+
+{% if is_paginated %}
+    {% include 'partial/pagination.html' %}
+{% endif %}
+
 {% if not tasks %}
     <h2>ЗАДАЧ НЕТ</h2>
 {% endif %}
@@ -27,4 +33,8 @@
         </div>
     {% endfor %}
 </div>
+
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
 {% endblock content %}
